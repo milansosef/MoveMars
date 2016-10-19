@@ -6,6 +6,7 @@
 </div>
 -->
 
-<div class="background"></div>
+    <p>On Mars there is less gravity.<br>
+        The MarsMove application will help you prevent muscle loss and preserving overall body health.</p>
 
 <?php include_once "footer.php"?>

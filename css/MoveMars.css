@@ -2,29 +2,13 @@
     font-family:Raleway;
     src: url(../fonts/Raleway-Regular.ttf);
 }
-.background {
-    background-image: url("../images/Mars_background2.jpg");
+body {
+    background: url("../images/Mars_background2.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
-/*#bg {
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-}
-#bg img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    min-width: 50%;
-    min-height: 50%;
-}*/
 
 /*Navigatiebalk*/
 ul {
@@ -52,6 +36,7 @@ li a {
 li a:hover {
     background-color:#111;
     color:white;
+    opacity:.5;
 }
 
 .navigatiebalk {
@@ -114,7 +99,7 @@ textarea {
 }
 
 input:focus, textarea:focus {
-    border:1px solid ##97d6eb;;
+    border:1px solid #97d6eb;;
 }
 
 #submit {

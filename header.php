@@ -22,7 +22,8 @@ echo '
       <li class="middle"></li>
       <li class="right"><a href="login.php">Login</a></li>
       <li class="right"><a href="register.php">Register</a></li>
-</ul class="navigatiebalk">';
+</ul class="navigatiebalk">
 
+'
 ?>
 
