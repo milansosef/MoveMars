@@ -1,0 +1,118 @@
+@font-face {
+    font-family:Raleway;
+    src: url(../fonts/Raleway-Regular.ttf);
+}
+body {
+    background: url("../images/Mars_background2.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+p, h1 {
+    color:white;
+}
+
+/*Navigatiebalk*/
+ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    background-color:#333;
+}
+
+li {
+    float:left;
+    font-family:Raleway, sans-serif;
+}
+
+li a {
+    display:block;
+    color:white;
+    text-align:center;
+    padding:14px 16px;
+    text-decoration:none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color:#111;
+    color:white;
+    opacity:.5;
+}
+
+.navigatiebalk {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+ .left {
+     order:1;
+     flex-grow:1;  }
+
+.right {
+    order:3;
+    flex-grow:1;
+}
+
+.middle {
+    order:2;
+    flex-grow:5;
+}
+
+/*Contactformulier*/
+
+label {
+    display:block;
+    margin-top:20px;
+    letter-spacing:2px;
+}
+
+/* Centre the page */
+.body {
+    display:block;
+    margin:0 auto;
+    width:576px;
+}
+
+/* Centre the form within the page */
+form {
+    margin:0 auto;
+    width:459px;
+}
+
+/* Style the text boxes */
+input, textarea {
+    width:439px;
+    height:27px;
+    background:#efefef;
+    border:1px solid #dedede;
+    padding:10px;
+    margin-top:3px;
+    font-size:0.9em;
+    color:#3a3a3a;
+    -moz-border-radius:5px;     /*Firefox*/
+    -webkit-border-radius:5px;  /*Chrome and Safari*/
+    border-radius:5px;          /*Opera*/
+}
+
+textarea {
+    height:213px;
+}
+
+input:focus, textarea:focus {
+    border:1px solid #97d6eb;;
+}
+
+#submit {
+    width:127px;
+    height:38px;
+    border:none;
+    margin-top:20px;
+    cursor:pointer;
+}
+        #submit:hover {
+             opacity:.9;
+        }
