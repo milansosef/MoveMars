@@ -7,18 +7,18 @@ include_once 'database/dbconnect.php';
 //set validation error flag as false
 $error = false;
 
+print_r($_POST);
 
 //check if form is submitted
-if (isset($_POST['signup'])) {
-    $username = mysqli_real_escape_string($con, $_POST['username']);
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
-    $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
-
+if (isset($_POST['submit'])) {
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $cpassword = mysqli_real_escape_string($conn, $_POST['cpassword']);
 
 
     //name can contain only alpha characters and space
-    if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
+    if (!preg_match("/^[a-zA-Z ]+$/",$username)) {
         $error = true;
         $username_error = "Name must contain only alphabets and space";
     }
@@ -35,11 +35,13 @@ if (isset($_POST['signup'])) {
         $cpassword_error = "Password and Confirm Password doesn't match";
     }
     if (!$error) {
-        if(mysqli_query($conn, "INSERT INTO gebruikers(username,email,password) VALUES('" . $username . "', '" . $email . "', '" . md5($password) . "')")) {
+        $query = "INSERT INTO gebruikers (username,email,password)
+                  VALUES('" . $username . "', '" . $email . "', '" . md5($password) . "')";
+        if(mysqli_query($conn, $query)) {
             $successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
 
         } else {
-            $errormsg = "Error in registering...Please try again later!";
+            $errormsg = mysqli_error($conn) . " Error in registering...Please try again later!";
         }
     } else {
         $errormsg = "Error!";
@@ -64,13 +66,13 @@ if (isset($_POST['signup'])) {
 
                         <div class="form-group">
                             <label for="username">Userame</label>
-                            <input type="text" name="Username" placeholder="Username" required value="<?php if($error) echo $name; ?>" class="form-control" />
-                            <span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
+                            <input type="text" name="username" placeholder="Username" required value="<?php if($error) echo $username; ?>" class="form-control" />
+                            <span class="text-danger"><?php if (isset($username_error)) echo $username_error; ?></span>
                         </div>
 
                         <div class="form-group">
                             <label for="name">Email</label>
-                            <input type="text" name="email" placeholder="Email" required value="<?php if($error) echo $email; ?>" class="form-control" />
+                            <input type="email" name="email" placeholder="Email" required value="<?php if($error) echo $email; ?>" class="form-control" />
                             <span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
                         </div>
 
@@ -86,21 +88,22 @@ if (isset($_POST['signup'])) {
                             <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
                         </div>
 
+                        <div class="links"
                         <div class="form-group">
                             <input id="submit" name="submit" type="submit" value="Register">
-                            <a href="login.php"><button>Login here</button></a>
                         </div>
                     </fieldset>
                 </form>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4 text-center">
+                        Already Registered? <a href="login.php">Login Here</a>
+                    </div>
+                </div>
                 <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
                 <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4 text-center">
-                Already Registered? <a href="login.php">Login Here</a>
-            </div>
-        </div>
+
     </div>
     </body>
     </html>
