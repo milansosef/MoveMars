@@ -9,16 +9,17 @@
 
 <?php
 
-$name = $_POST['name'];
-$email = $_POST['email'];
-$message = $_POST['message'];
-$from = 'From: MarsMove';
-$to = 'msosef@yahoo.com';
-$subject = 'Contact_MarsMove';
-$human = $_POST['human'];
+if (isset($_POST['submitted'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+    $from = 'From: MarsMove';
+    $to = 'msosef@yahoo.com';
+    $subject = 'Contact_MarsMove';
+    $human = $_POST['human'];
 
-$body = "From: $name\n E-Mail: $email\n Message:\n $message";
-
+    $body = "From: $name\n E-Mail: $email\n Message:\n $message";
+}
 if ($_POST['submit'] && $human == '4') {
     if (mail ($to, $subject, $body, $from)) {
         echo '<p>Your message has been sent!</p>';
@@ -34,18 +35,19 @@ if ($_POST['submit'] && $human == '4') {
         <form method="post" action="contact.php">
 
             <label>Name</label>
-            <input name="name" placeholder="Type Here">
+            <input name="name" type="text" placeholder="Type Here">
 
             <label>Email</label>
             <input name="email" type="email" placeholder="Type Here">
 
             <label>Message</label>
-            <textarea name="message" placeholder="Type Here"></textarea>
+            <textarea name="message" type="text" placeholder="Type Here"></textarea>
 
             <label>*What is 2+2? (Anti-spam)</label>
             <input name="human" placeholder="Type Here">
 
             <input id="submit" name="submit" type="submit" value="Submit">
+            <input type="hidden" name="submitted" value="true">
 
         </form>
     </section>

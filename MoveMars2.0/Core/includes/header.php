@@ -11,7 +11,7 @@ echo '
 <head>
     <meta charset="UTF-8">
     <title>Mars Move</title>
-    <link rel="stylesheet" type="text/css" href="css/MoveMars.css">
+    <link rel="stylesheet" type="text/css" href="../css/MoveMars.css">
 </head>
 <body>
 <ul class="navigatiebalk">
