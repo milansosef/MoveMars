@@ -12,13 +12,13 @@ include_once 'database/dbconnect.php';
 //check if form is submitted
 if (isset($_POST['login'])) {
 
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
-    $result = mysqli_query($con, "SELECT * FROM users WHERE email = '" . $email. "' and password = '" . md5($password) . "'");
-
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '" . $username. "' and password = '" . md5($password) . "'");
+    echo "success";
     if ($row = mysqli_fetch_array($result)) {
         $_SESSION['usr_id'] = $row['id'];
-        $_SESSION['usr_name'] = $row['name'];
+        $_SESSION['usr_username'] = $row['username'];
         header("Location: index.php");
     } else {
         $errormsg = "Incorrect Email or Password!!!";
@@ -28,10 +28,10 @@ if (isset($_POST['login'])) {
 
     <!DOCTYPE html>
     <html>
-    <head>
+    <head   >
         <title>PHP Login Script</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" >
-        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="MoveMars.css" type="text/css" />
     </head>
     <body>
     <div class="container">
@@ -42,8 +42,8 @@ if (isset($_POST['login'])) {
                         <legend>Login</legend>
 
                         <div class="form-group">
-                            <label for="name">Email</label>
-                            <input type="text" name="email" placeholder="Your Email" required class="form-control" />
+                            <label for="name">Username</label>
+                            <input type="text" name="username" placeholder="Enter username" required class="form-control" />
                         </div>
 
                         <div class="form-group">
@@ -66,8 +66,6 @@ if (isset($_POST['login'])) {
         </div>
     </div>
 
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     </body>
     </html>
 
