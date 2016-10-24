@@ -9,7 +9,7 @@
 
 <?php
 
-if (isset($_POST['submitted'])) {
+if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $message = $_POST['message'];
@@ -19,16 +19,18 @@ if (isset($_POST['submitted'])) {
     $human = $_POST['human'];
 
     $body = "From: $name\n E-Mail: $email\n Message:\n $message";
-}
-if ($_POST['submit'] && $human == '4') {
-    if (mail ($to, $subject, $body, $from)) {
-        echo '<p>Your message has been sent!</p>';
-    } else {
-        echo '<p>Something went wrong, go back and try again!</p>';
+
+    if ($_POST['submit'] && $human == '4') {
+        if (mail ($to, $subject, $body, $from)) {
+            echo '<p>Your message has been sent!</p>';
+        } else {
+            echo '<p>Something went wrong, go back and try again!</p>';
+        }
+    } else if ($_POST['submit'] && $human != '4') {
+        echo '<p>You answered the anti-spam question incorrectly!</p>';
     }
-} else if ($_POST['submit'] && $human != '4') {
-    echo '<p>You answered the anti-spam question incorrectly!</p>';
 }
+
 ?>
 
     <section class="body">
@@ -47,7 +49,7 @@ if ($_POST['submit'] && $human == '4') {
             <input name="human" placeholder="Type Here">
 
             <input id="submit" name="submit" type="submit" value="Submit">
-            <input type="hidden" name="submitted" value="true">
+            <!--<input type="hidden" name="submitted" value="true">-->
 
         </form>
     </section>
