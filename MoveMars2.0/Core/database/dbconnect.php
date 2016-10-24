@@ -1,4 +1,9 @@
 <?php
 //connect to mysql database
-$con = mysqli_connect("localhost", "root", "", "testdb") or die("Error " . mysqli_error($con));
+$conn = mysqli_connect("localhost", "root", "");
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+echo "Connected successfully";
 ?>
