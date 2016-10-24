@@ -1,28 +1,26 @@
-<?php include_once "core/includes/header.php" ?>
-
+<?php include_once "includes/header.php"?>
 <?php
 session_start();
 
-if(isset($_SESSION['usr_id'])) {
-    header("Location: index.php");
-}
-
-include_once 'Core/database/dbconnect.php';
+include_once 'database/dbconnect.php';
 
 //set validation error flag as false
 $error = false;
 
+
 //check if form is submitted
 if (isset($_POST['signup'])) {
-    $name = mysqli_real_escape_string($con, $_POST['name']);
+    $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
     $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
 
+
+
     //name can contain only alpha characters and space
     if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
         $error = true;
-        $name_error = "Name must contain only alphabets and space";
+        $username_error = "Name must contain only alphabets and space";
     }
     if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
         $error = true;
@@ -37,11 +35,14 @@ if (isset($_POST['signup'])) {
         $cpassword_error = "Password and Confirm Password doesn't match";
     }
     if (!$error) {
-        if(mysqli_query($con, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
+        if(mysqli_query($conn, "INSERT INTO gebruikers(username,email,password) VALUES('" . $username . "', '" . $email . "', '" . md5($password) . "')")) {
             $successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
+
         } else {
             $errormsg = "Error in registering...Please try again later!";
         }
+    } else {
+        $errormsg = "Error!";
     }
 }
 ?>
@@ -51,7 +52,7 @@ if (isset($_POST['signup'])) {
     <head>
         <title>User Registration Script</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" >
-        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="Core/css/MoveMars.css" type="text/css" />
     </head>
     <body>
     <div class="container">
@@ -62,8 +63,8 @@ if (isset($_POST['signup'])) {
                         <legend>Sign Up</legend>
 
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" placeholder="Enter Full Name" required value="<?php if($error) echo $name; ?>" class="form-control" />
+                            <label for="username">Userame</label>
+                            <input type="text" name="Username" placeholder="Username" required value="<?php if($error) echo $name; ?>" class="form-control" />
                             <span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
                         </div>
 
@@ -86,7 +87,7 @@ if (isset($_POST['signup'])) {
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" name="signup" value="Sign Up" class="btn btn-primary" />
+                            <input id="submit" name="submit" type="submit" value="Register">
                         </div>
                     </fieldset>
                 </form>
@@ -100,12 +101,7 @@ if (isset($_POST['signup'])) {
             </div>
         </div>
     </div>
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     </body>
     </html>
 
-
-
-
-<?php include_once "core/includes/footer.php" ?>
+<?php include_once "includes/footer.php"?>
