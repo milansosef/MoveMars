@@ -1,7 +1,6 @@
 <?php include_once "includes/header.php"?>
 
 <?php
-session_start();
 
 if(isset($_SESSION['usr_id'])!="") {
     header("Location: index.php");
@@ -10,18 +9,22 @@ if(isset($_SESSION['usr_id'])!="") {
 include_once 'database/dbconnect.php';
 
 //check if form is submitted
-if (isset($_POST['login'])) {
-
+if (isset($_POST['submit'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '" . $username. "' and password = '" . md5($password) . "'");
+    $result = mysqli_query($conn, "SELECT * FROM gebruikers WHERE username = '" . $username. "' and password = '" . md5($password) . "'");
     echo "success";
+    echo md5($password);
     if ($row = mysqli_fetch_array($result)) {
         $_SESSION['usr_id'] = $row['id'];
-        $_SESSION['usr_username'] = $row['username'];
+        $_SESSION['username'] = $row['username'];
+
+        echo "yay";
+
         header("Location: index.php");
     } else {
-        $errormsg = "Incorrect Email or Password!!!";
+        echo "no";
+        $errormsg = "Incorrect Username or Password!!!";
     }
 }
 ?>
