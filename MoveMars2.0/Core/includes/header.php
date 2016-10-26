@@ -16,6 +16,7 @@ echo '
 </head>
 <body>
 <ul class="navigatiebalk">
+      <li class="titel"><h1>Mars Move</h1></li>
       <li class="left"><a href="index.php">Home</a></li>
       <li class="left"><a href="store.php">Store</a></li>
       <li class="left"><a href="partners.php">Partners</a></li>
