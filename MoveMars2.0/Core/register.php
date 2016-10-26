@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
         $query = "INSERT INTO gebruikers (username,email,password)
                   VALUES('" . $username . "', '" . $email . "', '" . md5($password) . "')";
         if(mysqli_query($conn, $query)) {
-            $successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
+            header("Location: login.php");
 
         } else {
             $errormsg = mysqli_error($conn) . " Error in registering...Please try again later!";
