@@ -44,6 +44,10 @@ p, h1 {
     cursor:pointer;
 }
 
+.content {
+    margin-top: 150px;
+}
+
 /*Navigatiebalk*/
 .titel {
     padding-left: 30px;
@@ -168,12 +172,11 @@ input:focus, textarea:focus {
     cursor:pointer;
 }
         #submit:hover {
-             opacity:.9;
+            opacity: .9;
         }
-
 .row {
-    text-align: center;
-}
+     text-align: center;
+ }
 
 .links {
     padding-top: 20px;
