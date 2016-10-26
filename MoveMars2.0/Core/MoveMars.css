@@ -170,3 +170,11 @@ input:focus, textarea:focus {
         #submit:hover {
              opacity:.9;
         }
+
+.row {
+    text-align: center;
+}
+
+.links {
+    padding-top: 20px;
+}
